@@ -1,4 +1,4 @@
-package br.com.airu;
+package main.java.br.com.airu;
 
 import java.util.ArrayList;
 import java.util.List;

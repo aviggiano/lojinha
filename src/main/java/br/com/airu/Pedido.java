@@ -1,4 +1,4 @@
-package br.com.airu;
+package main.java.br.com.airu;
 
 public class Pedido {
 

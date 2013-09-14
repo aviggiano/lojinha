@@ -1,6 +1,8 @@
-package br.com.airu;
+package test.java.br.com.airu;
 
 import static org.junit.Assert.*;
+
+import main.java.br.com.airu.*;
 
 import org.junit.Test;
 
