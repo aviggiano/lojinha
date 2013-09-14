@@ -26,23 +26,9 @@ public class Cliente {
 		int frete = 0;
 		String result = "Pedido para " + getName() + "\n";
 		for (final Pedido pedido : pedidos) {
-			switch (pedido.getProduto().getTipo()) {
-			case Produto.COMUM:
-				total += pedido.getProduto().getPreco() * pedido.getQuantidade();
-				prazo = prazo < 3 ? 3 : prazo;
-				frete += 10;
-				break;
-			case Produto.MANUFATURADO:
-				total += pedido.getProduto().getPreco() * pedido.getQuantidade();
-				prazo = prazo < 5 ? 5 : prazo;
-				frete += 10;
-				break;
-			case Produto.IMPORTADO:
-				total += pedido.getProduto().getPreco() * pedido.getQuantidade() * 1.5;
-				prazo = prazo < 15 ? 15 : prazo;
-				frete += 20;
-				break;
-			}
+				total += pedido.getProduto().getPreco() * pedido.getQuantidade() * pedido.getProduto().getTaxaExtra();
+				prazo = prazo < pedido.getProduto().getPrazoMin() ? pedido.getProduto().getPrazoMin() : prazo;
+				frete += pedido.getProduto().getFrete();
 		}
 		result += "Valor total: " + total + "\n";
 		result += "Valor frete: " + frete + "\n";
