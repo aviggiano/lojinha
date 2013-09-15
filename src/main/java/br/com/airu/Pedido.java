@@ -4,6 +4,7 @@ public class Pedido {
 
 	private final Produto produto;
 	private final int quantidade;
+	private Coupon coupon;
 
 	public Pedido(final Produto produto, final int quantidade) {
 		this.produto = produto;
@@ -16,5 +17,13 @@ public class Pedido {
 
 	public int getQuantidade() {
 		return quantidade;
+	}
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 }

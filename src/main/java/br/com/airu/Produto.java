@@ -6,6 +6,7 @@ public class Produto {
 	public static final int MANUFATURADO = 1;
 	public static final int IMPORTADO = 2;
 	
+	/* valores necessarios para fazer o checkout de um produto */
 	public static final int PRAZO_MIN_COMUM = 3;
 	public static final int PRAZO_MIN_MANUFATURADO = 5;
 	public static final int PRAZO_MIN_IMPORTADO = 15;
@@ -36,11 +37,11 @@ public class Produto {
 	
 	private void calculaTaxaExtra() {
 		if (this.tipo == COMUM)
-			taxaExtra = TAXA_EXTRA_COMUM;
+			taxaExtra = 1;
 		else if (this.tipo == MANUFATURADO)
-			taxaExtra = TAXA_EXTRA_MANUFATURADO;
+			taxaExtra = 1;
 		else if (this.tipo == IMPORTADO)
-			taxaExtra = TAXA_EXTRA_IMPORTADO;
+			taxaExtra = 1.5;
 	}
 
 	private void calculaPrazoMin() {
