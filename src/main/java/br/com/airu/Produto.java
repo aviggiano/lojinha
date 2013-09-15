@@ -1,5 +1,8 @@
 package main.java.br.com.airu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Produto {
 
 	public static final int COMUM = 0;
@@ -10,28 +13,12 @@ public class Produto {
 	 */
 	public static final int PERECIVEL = 3;
 	
-	/* valores necessarios para fazer o checkout de um produto */
-	public static final int PRAZO_COMUM = 3;
-	public static final int PRAZO_MANUFATURADO = 5;
-	public static final int PRAZO_IMPORTADO = 15;
-	public static final int PRAZO_PERECIVEL = 3;
-	
-	public static final int FRETE_COMUM = 10;
-	public static final int FRETE_MANUFATURADO = 10;
-	public static final int FRETE_IMPORTADO = 20;
-	public static final int FRETE_PERECIVEL = 10 * FRETE_COMUM;
-	
-	public static final double TAXA_EXTRA_COMUM = 1;
-	public static final double TAXA_EXTRA_MANUFATURADO = 1;
-	public static final double TAXA_EXTRA_IMPORTADO = 1.5;
-	public static final double TAXA_EXTRA_PERECIVEL = 1;
-	
 	private final String titulo;
 	private final int preco;
 	private int tipo;
-	private int prazo;
-	private int frete;
-	private double taxaExtra;
+	private List<Integer> prazo;
+	private List<Integer> frete;
+	private List<Double> taxaExtra;
 	
 	public Produto(final String titulo, final int preco, final int tipo) {
 		this.titulo = titulo;
@@ -43,36 +30,27 @@ public class Produto {
 	}
 	
 	private void calculaTaxaExtra() {
-		if (this.tipo == COMUM)
-			taxaExtra = TAXA_EXTRA_COMUM;
-		else if (this.tipo == MANUFATURADO)
-			taxaExtra = TAXA_EXTRA_MANUFATURADO;
-		else if (this.tipo == IMPORTADO)
-			taxaExtra = TAXA_EXTRA_IMPORTADO;
-		else if (this.tipo == PERECIVEL)
-			taxaExtra = TAXA_EXTRA_PERECIVEL;
+		taxaExtra = new ArrayList<Double>();
+		taxaExtra.add(COMUM, 1.0);
+		taxaExtra.add(MANUFATURADO, 1.0);
+		taxaExtra.add(IMPORTADO, 1.5);
+		taxaExtra.add(PERECIVEL, 1.0);
 	}
 
 	private void calculaPrazo() {
-		if (this.tipo == COMUM)
-			prazo = PRAZO_COMUM;
-		else if (this.tipo == MANUFATURADO)
-			prazo = PRAZO_MANUFATURADO;
-		else if (this.tipo == IMPORTADO)
-			prazo = PRAZO_IMPORTADO;
-		else if (this.tipo == PERECIVEL)
-			prazo = PRAZO_PERECIVEL;
+		prazo = new ArrayList<Integer>();
+		prazo.add(COMUM, 3);
+		prazo.add(MANUFATURADO, 5);
+		prazo.add(IMPORTADO, 15);
+		prazo.add(PERECIVEL, 3);
 	}
 
 	private void calculaFrete() {
-		if (this.tipo == COMUM)
-			frete = FRETE_COMUM;
-		else if (this.tipo == MANUFATURADO)
-			frete = FRETE_MANUFATURADO;
-		else if (this.tipo == IMPORTADO)
-			frete = FRETE_IMPORTADO;
-		else if (this.tipo == PERECIVEL)
-			frete = FRETE_PERECIVEL;
+		frete = new ArrayList<Integer>();
+		frete.add(COMUM, 10);
+		frete.add(MANUFATURADO, 10);
+		frete.add(IMPORTADO, 20);
+		frete.add(PERECIVEL, 10 * frete.get(COMUM));
 	}
 
 	public String getTitulo() {
@@ -92,15 +70,15 @@ public class Produto {
 	}
 	
 	public int getPrazo() {
-		return prazo;
+		return prazo.get(tipo);
 	}
 	
 	public int getFrete() {
-		return frete;
+		return frete.get(tipo);
 	}
 	
 	public double getTaxaExtra() {
-		return taxaExtra;
+		return taxaExtra.get(tipo);
 	}
 
 }
