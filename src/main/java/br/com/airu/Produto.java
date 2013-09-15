@@ -16,43 +16,15 @@ public class Produto {
 	private final String titulo;
 	private final int preco;
 	private int tipo;
-	private List<Integer> prazo;
-	private List<Integer> frete;
-	private List<Double> taxaExtra;
+	private MapaDeTipos mapaDeTipos;
 	
 	public Produto(final String titulo, final int preco, final int tipo) {
 		this.titulo = titulo;
 		this.preco = preco;
 		this.tipo = tipo;
-		calculaPrazo();
-		calculaFrete();
-		calculaTaxaExtra();
+		this.mapaDeTipos = new MapaDeTipos();
 	}
 	
-	private void calculaTaxaExtra() {
-		taxaExtra = new ArrayList<Double>();
-		taxaExtra.add(COMUM, 1.0);
-		taxaExtra.add(MANUFATURADO, 1.0);
-		taxaExtra.add(IMPORTADO, 1.5);
-		taxaExtra.add(PERECIVEL, 1.0);
-	}
-
-	private void calculaPrazo() {
-		prazo = new ArrayList<Integer>();
-		prazo.add(COMUM, 3);
-		prazo.add(MANUFATURADO, 5);
-		prazo.add(IMPORTADO, 15);
-		prazo.add(PERECIVEL, 3);
-	}
-
-	private void calculaFrete() {
-		frete = new ArrayList<Integer>();
-		frete.add(COMUM, 10);
-		frete.add(MANUFATURADO, 10);
-		frete.add(IMPORTADO, 20);
-		frete.add(PERECIVEL, 10 * frete.get(COMUM));
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -70,15 +42,15 @@ public class Produto {
 	}
 	
 	public int getPrazo() {
-		return prazo.get(tipo);
+		return mapaDeTipos.getPrazo(tipo);
 	}
 	
 	public int getFrete() {
-		return frete.get(tipo);
+		return mapaDeTipos.getFrete(tipo);
 	}
 	
 	public double getTaxaExtra() {
-		return taxaExtra.get(tipo);
+		return mapaDeTipos.getTaxaExtra(tipo);
 	}
 
 }

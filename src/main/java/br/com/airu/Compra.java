@@ -6,7 +6,7 @@ import java.util.List;
 public class Compra {
 
 	private final Cliente cliente;
-	private List<Pedido> pedidos = new ArrayList<Pedido>();
+	private List<Pedido> pedidos;
 	private Coupon coupon;
 
 	public Compra (final Cliente cliente, List<Pedido> pedidos) {
