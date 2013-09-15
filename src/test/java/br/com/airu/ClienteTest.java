@@ -93,4 +93,22 @@ public class ClienteTest {
 					 "Prazo de entrega: 15 dias\n", compra.checkout());		
 	}
 
+	@Test
+	public void testCheckoutPerecivel() {
+		Cliente didi = new Cliente("Didi");
+		
+		Produto ovo = new Produto ("ovo", 100, Produto.PERECIVEL);
+		
+		Pedido pedido1 = new Pedido(ovo, 1);
+		
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		pedidos.add(pedido1);
+		
+		Compra compra = new Compra(didi, pedidos);
+		
+		assertEquals("Pedido para Didi\n" +
+					 "Valor total: 100\n" +
+					 "Valor frete: 100\n" +
+					 "Prazo de entrega: 3 dias\n", compra.checkout());				
+	}
 }

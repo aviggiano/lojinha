@@ -31,6 +31,9 @@ public class Compra {
 		result += "Valor total: " + total + "\n";
 		result += "Valor frete: " + frete + "\n";
 		result += "Prazo de entrega: " + prazo + " dias\n";
+		/* Aqui o valor do coupon nao e' subtraido do valor final. Seria simples de alterar o valor total como
+		 * total = subtotal - desconto, mas o enunciado do problema nao deixa claro se isso deve ser feito ou nao.
+		 */
 		result += (coupon != null && total > coupon.getValorMinimoCompra())? "Desconto: " + coupon.getDesconto() + "\n" : "";
 		return result;
 	}
