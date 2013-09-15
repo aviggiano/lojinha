@@ -7,9 +7,9 @@ public class Produto {
 	public static final int IMPORTADO = 2;
 	
 	/* valores necessarios para fazer o checkout de um produto */
-	public static final int PRAZO_MIN_COMUM = 3;
-	public static final int PRAZO_MIN_MANUFATURADO = 5;
-	public static final int PRAZO_MIN_IMPORTADO = 15;
+	public static final int PRAZO_COMUM = 3;
+	public static final int PRAZO_MANUFATURADO = 5;
+	public static final int PRAZO_IMPORTADO = 15;
 	
 	public static final int FRETE_COMUM = 10;
 	public static final int FRETE_MANUFATURADO = 10;
@@ -22,7 +22,7 @@ public class Produto {
 	private final String titulo;
 	private final int preco;
 	private int tipo;
-	private int prazoMin;
+	private int prazo;
 	private int frete;
 	private double taxaExtra;
 	
@@ -46,11 +46,11 @@ public class Produto {
 
 	private void calculaPrazoMin() {
 		if (this.tipo == COMUM)
-			prazoMin = PRAZO_MIN_COMUM;
+			prazo = PRAZO_COMUM;
 		else if (this.tipo == MANUFATURADO)
-			prazoMin = PRAZO_MIN_MANUFATURADO;
+			prazo = PRAZO_MANUFATURADO;
 		else if (this.tipo == IMPORTADO)
-			prazoMin = PRAZO_MIN_IMPORTADO;
+			prazo = PRAZO_IMPORTADO;
 	}
 
 	private void calculaFrete() {
@@ -78,8 +78,8 @@ public class Produto {
 		this.tipo = tipo;
 	}
 	
-	public int getPrazoMin() {
-		return prazoMin;
+	public int getPrazo() {
+		return prazo;
 	}
 	
 	public int getFrete() {

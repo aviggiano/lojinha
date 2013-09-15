@@ -6,10 +6,10 @@ public class Coupon {
 	 * Essa decisao depende das regras de negocio do sistema da lojinha.  
 	 */
 	private final String codigo;
-	private final double desconto;
+	private final int desconto;
 	private final int valorMinimoCompra;
 	
-	public Coupon (String codigo, double desconto, int valorMinimoCompra) {
+	public Coupon (String codigo, int desconto, int valorMinimoCompra) {
 		this.codigo = codigo;
 		this.desconto = desconto;
 		this.valorMinimoCompra = valorMinimoCompra;
@@ -17,6 +17,14 @@ public class Coupon {
 
 	public String getCodigo() {
 		return codigo;
+	}
+
+	public int getDesconto() {
+		return desconto;
+	}
+
+	public int getValorMinimoCompra() {
+		return valorMinimoCompra;
 	}
 	
 	

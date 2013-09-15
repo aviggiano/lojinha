@@ -7,6 +7,7 @@ public class Compra {
 
 	private final Cliente cliente;
 	private List<Pedido> pedidos = new ArrayList<Pedido>();
+	private Coupon coupon;
 
 	public Compra (final Cliente cliente, List<Pedido> pedidos) {
 		this.cliente = cliente;
@@ -24,13 +25,22 @@ public class Compra {
 		String result = "Pedido para " + cliente.getName() + "\n";
 		for (final Pedido pedido : pedidos) {
 				total += pedido.getProduto().getPreco() * pedido.getQuantidade() * pedido.getProduto().getTaxaExtra();
-				prazo = prazo < pedido.getProduto().getPrazoMin() ? pedido.getProduto().getPrazoMin() : prazo;
+				prazo = prazo < pedido.getProduto().getPrazo() ? pedido.getProduto().getPrazo() : prazo;
 				frete += pedido.getProduto().getFrete();
 		}
 		result += "Valor total: " + total + "\n";
 		result += "Valor frete: " + frete + "\n";
 		result += "Prazo de entrega: " + prazo + " dias\n";
+		result += (coupon != null && total > coupon.getValorMinimoCompra())? "Desconto: " + coupon.getDesconto() + "\n" : "";
 		return result;
+	}
+
+	public Coupon getCoupon() {
+		return coupon;
+	}
+
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 
 }

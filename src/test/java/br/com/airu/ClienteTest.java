@@ -35,5 +35,62 @@ public class ClienteTest {
 					 "Valor frete: 40\n" +
 					 "Prazo de entrega: 15 dias\n", compra.checkout());
 	}
+	
+	@Test
+	public void testCheckoutComCouponAceito() {
+		Cliente mussum = new Cliente("Mussum");
+		
+		Produto estojo = new Produto("estojo", 1000, Produto.COMUM);
+		Produto lapis = new Produto("lapis", 3000, Produto.MANUFATURADO);
+		Produto tenis = new Produto("tenis", 6000, Produto.IMPORTADO);
+		
+		Pedido pedido1 = new Pedido(estojo, 2);
+		Pedido pedido2 = new Pedido(lapis, 1);
+		Pedido pedido3 = new Pedido(tenis, 1);
+		
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		pedidos.add(pedido1);
+		pedidos.add(pedido2);
+		pedidos.add(pedido3);
+		
+		Coupon coupon = new Coupon("1.4142", 1400, 10000);
+		
+		Compra compra = new Compra(mussum, pedidos);
+		compra.setCoupon(coupon);
+		
+		assertEquals("Pedido para Mussum\n" +
+					 "Valor total: 14000\n" +
+					 "Valor frete: 40\n" +
+					 "Prazo de entrega: 15 dias\n" +
+					 "Desconto: 1400\n", compra.checkout());		
+	}
+	
+	@Test
+	public void testCheckoutComCouponNaoAceito() {
+		Cliente dede = new Cliente("Dédé");
+		
+		Produto estojo = new Produto("estojo", 1000, Produto.COMUM);
+		Produto lapis = new Produto("lapis", 3000, Produto.MANUFATURADO);
+		Produto tenis = new Produto("tenis", 6000, Produto.IMPORTADO);
+		
+		Pedido pedido1 = new Pedido(estojo, 2);
+		Pedido pedido2 = new Pedido(lapis, 1);
+		Pedido pedido3 = new Pedido(tenis, 1);
+		
+		List<Pedido> pedidos = new ArrayList<Pedido>();
+		pedidos.add(pedido1);
+		pedidos.add(pedido2);
+		pedidos.add(pedido3);
+		
+		Coupon coupon = new Coupon("3.1415", 1400, 24000);
+		
+		Compra compra = new Compra(dede, pedidos);
+		compra.setCoupon(coupon);
+		
+		assertEquals("Pedido para Dédé\n" +
+					 "Valor total: 14000\n" +
+					 "Valor frete: 40\n" +
+					 "Prazo de entrega: 15 dias\n", compra.checkout());		
+	}
 
 }
